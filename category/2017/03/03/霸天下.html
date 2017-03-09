@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="霸天下的空间">
 <meta property="og:description" content="关于Android月js或者说html交互的方式，在很早的版本中是通过android端添加js支持，然后传递一个js操作本地方法的对象，然后就可以调用本地的方法。在后边的版本为了统一管理，添加了@JavascriptInterface  ，只有添加了这个标志的方法才能被js调用。但是这样的调用方式还是存在安全的漏掉，所有后边就有了另外的俩种调用方式。
 方式 一：WebSettings webSet">
-<meta property="og:updated_time" content="2017-03-09T10:47:15.205Z">
+<meta property="og:updated_time" content="2017-03-09T10:51:29.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="android与js交互的方式（包括三种）">
 <meta name="twitter:description" content="关于Android月js或者说html交互的方式，在很早的版本中是通过android端添加js支持，然后传递一个js操作本地方法的对象，然后就可以调用本地的方法。在后边的版本为了统一管理，添加了@JavascriptInterface  ，只有添加了这个标志的方法才能被js调用。但是这样的调用方式还是存在安全的漏掉，所有后边就有了另外的俩种调用方式。
@@ -210,7 +210,8 @@ mWebView.addJavascriptInterface(new JSObject(), &quot;myObj&quot;);
 
     return false;  
 }
-</code></pre><h1 id="方式三："><a href="#方式三：" class="headerlink" title="方式三："></a>方式三：</h1><p>方式三与方式二十分相似，是来拦截onJsAlert（js对话框），或者onJsConfirm（确认对话框）或者onJsPrompt（可编辑文本框）来进行js对于本地代码的请求。<br>但是要注意的是只有onJsPrompt可以传递数据到js，前边俩个只能接收js调用本地方法的请求，没有办法进行参数回传。<br>[java] view plain copy print?在CODE上查看代码片派生到我的代码片<br>mWebView.setWebChromeClient(new WebChromeClient(){  </p>
+</code></pre><h1 id="方式三："><a href="#方式三：" class="headerlink" title="方式三："></a>方式三：</h1><p>方式三与方式二十分相似，是来拦截onJsAlert（js对话框），或者onJsConfirm（确认对话框）或者onJsPrompt（可编辑文本框）来进行js对于本地代码的请求。<br>但是要注意的是只有onJsPrompt可以传递数据到js，前边俩个只能接收js调用本地方法的请求，没有办法进行参数回传。</p>
+<p>mWebView.setWebChromeClient(new WebChromeClient(){  </p>
 <pre><code>    //拦截JS的alert方法  
     @Override  
     public boolean onJsAlert(WebView view, String url, String message, JsResult result) {  
